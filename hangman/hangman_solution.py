@@ -78,7 +78,7 @@ class Hangman:
         # TODO 1: The letter has to comply with the following criteria: It has to be a single character. If it is not, print "Please, enter just one character"
         # TODO 2. It has to be a letter that has not been tried yet. Use the list_letters attribute to check this. If it has been tried, print "{letter} was already tried".
         # TODO 3: If the letter is valid, call the check_letter method
-        valid_guess = False
+        valid_letter = False
         while valid_letter == False:
             letter = input('Please guess a letter: ')
             if len(letter) > 1:
