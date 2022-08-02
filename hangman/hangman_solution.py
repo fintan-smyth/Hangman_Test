@@ -91,7 +91,6 @@ class Hangman:
         valid_letter = False
         while valid_letter == False:
             guess = input('Input your guess letter: ')
-            print('')
             letter = guess.lower()
             if len(letter) > 1:
                 print('Please, enter just one character')
