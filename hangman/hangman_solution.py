@@ -77,11 +77,13 @@ class Hangman:
         # TODO 3: If the letter is valid, call the check_letter method
         valid_letter = False
         while valid_letter == False:
-            letter = input('Please guess a letter: ')
+            guess = input('Input your guess letter: ')
+            print('')
+            letter = guess.lower()
             if len(letter) > 1:
-                print('Please, enter just one character')
+                print('Please, enter just one character. \n')
             elif len(letter) == 0:
-                print('Please, enter at least one character')
+                print('Please, enter at least one character. \n')
             else:
                 valid_letter = True
         print(f'Your guess was: {letter}')
