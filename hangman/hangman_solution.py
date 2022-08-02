@@ -49,9 +49,8 @@ class Hangman:
         self.num_letters = len(set(self.word))
         self.num_lives = num_lives
         self.list_letters = []
-        print(f"The mystery word has {len(self.word)} characters. \n")
-        print(f'{self.word_guessed} \n')
-        print(f'You have {self.num_lives} lives left. \n')
+        print(f"The mystery word has {len(self.word)} characters.")
+        print(f'{self.word_guessed}')
 
 
     def check_letter(self, letter) -> None:
@@ -73,12 +72,12 @@ class Hangman:
                 if character == letter:
                     self.word_guessed[i] = letter
             self.num_letters = self.num_letters - 1
-            print(f'Nice! {letter} is in the word \n')
-            print(self.word_guessed, '\n')
+            print(f'Nice! {letter} is in the word')
+            print(self.word_guessed)
         else:
             self.num_lives = self.num_lives - 1 
-            print(f'Sorry, {letter} is not in the word. \n')
-            print(f'You have {self.num_lives} lives left. \n')
+            print(f'Sorry, {letter} is not in the word.')
+            print(f'You have {self.num_lives} lives left.')
 
     def ask_letter(self):
         
@@ -95,11 +94,11 @@ class Hangman:
             print('')
             letter = guess.lower()
             if len(letter) > 1:
-                print('Please, enter just one character. \n')
+                print('Please, enter just one character')
             elif len(letter) == 0:
-                print('Please, enter at least one character. \n')
+                print('Please, enter at least one character')
             elif letter in self.list_letters:
-                    print(f"\"{letter}\" was already tried \n")
+                    print(f"{letter} was already tried")
             else:
                 valid_letter = True
                 self.list_letters.append(letter)
