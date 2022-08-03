@@ -55,8 +55,8 @@ class Hangman:
                             3:"\n|\n|\n|\n|\n|  \n|_____",
                             4:"\n_____"}
 
-        print(f"The mystery word has {len(self.word)} characters.")
-        print(f'{self.word_guessed}')
+        print(f"The mystery word has {len(self.word)} characters.\n")
+        print(f'{self.word_guessed}, \n')
 
 
     def check_letter(self, letter) -> None:
@@ -78,13 +78,14 @@ class Hangman:
                 if character == letter:
                     self.word_guessed[i] = letter
             self.num_letters = self.num_letters - 1
-            print(f'Nice! {letter} is in the word')
-            print(self.word_guessed)
+            print(f'Nice! {letter} is in the word\n')
+            
         else:
             self.num_lives = self.num_lives - 1 
-            print(f'Sorry, {letter} is not in the word.')
-            print(self.image_dic[self.num_lives])
-            print(f'You have {self.num_lives} lives left.')
+            print(f'Sorry, {letter} is not in the word.\n')
+            print(self.image_dic[self.num_lives],'\n')
+            print(f'You have {self.num_lives} lives left.\n')
+            
 
     def ask_letter(self):
         
@@ -98,13 +99,14 @@ class Hangman:
         valid_letter = False
         while valid_letter == False:
             guess = input('Input your guess letter: ')
+            print('\n')
             letter = guess.lower()
             if len(letter) > 1:
-                print('Please, enter just one character')
+                print('Please, enter just one character\n')
             elif len(letter) == 0:
-                print('Please, enter at least one character')
+                print('Please, enter at least one character\n')
             elif letter in self.list_letters:
-                    print(f"{letter} was already tried")
+                    print(f"{letter} was already tried\n")
             else:
                 valid_letter = True
                 self.list_letters.append(letter)
@@ -121,6 +123,7 @@ def play_game(word_list):
         elif game.num_letters ==0:
             print('Congratulations, you won!')
             finished = True
+        print(game.word_guessed, '\n')
 
 
 if __name__ == '__main__':
