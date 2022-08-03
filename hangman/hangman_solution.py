@@ -83,7 +83,7 @@ class Hangman:
         else:
             self.num_lives = self.num_lives - 1 
             print(f'Sorry, {letter} is not in the word.\n')
-            print(self.image_dic[self.num_lives],'\n')
+            print(self.image_dic[self.num_lives])
             print(f'You have {self.num_lives} lives left.\n')
             
 
@@ -120,10 +120,16 @@ def play_game(word_list):
         if game.num_lives == 0:
             print(f"You ran out of lives. The word was {game.word}")
             finished = True
+            break
+        
         elif game.num_letters ==0:
+            print(game.word_guessed, '\n')
             print('Congratulations, you won!')
             finished = True
+            break
         print(game.word_guessed, '\n')
+        
+        
 
 
 if __name__ == '__main__':
