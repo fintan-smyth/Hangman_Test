@@ -49,8 +49,8 @@ class Hangman:
         self.num_letters = len(set(self.word))
         self.num_lives = num_lives
         self.list_letters = []
-        self.image_dic =   {0:" ____\n|   |\n|   O \n|  /|\\\n|   | \n|  / \\\n|_____",
-                            1:" ____\n|   |\n|\n|\n|\n|  \n|_____",
+        self.image_dic =   {0:" ____\n|   |\n|   Q\n|  /|\\\n|   | \n|  / \\\n|_____",
+                            1:" ____\n|   |\n|   0\n|\n|\n|  \n|_____",
                             2:" ____\n|\n|\n|\n|\n|  \n|_____",
                             3:"\n|\n|\n|\n|\n|  \n|_____",
                             4:"\n_____"}
@@ -83,7 +83,7 @@ class Hangman:
         else:
             self.num_lives = self.num_lives - 1 
             print(f'Sorry, {letter} is not in the word.\n')
-            print(self.image_dic[self.num_lives])
+            print(self.image_dic[self.num_lives],'\n')
             print(f'You have {self.num_lives} lives left.\n')
             
 
