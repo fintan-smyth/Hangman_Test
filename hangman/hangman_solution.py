@@ -26,7 +26,7 @@ class Hangman:
         A list of the letters of the word, with '_' for each letter not yet guessed
         For example, if the word is 'apple', the word_guessed list would be ['_', '_', '_', '_', '_']
         If the player guesses 'a', the list would be ['a', '_', '_', '_', '_']
-    num_letters: int
+    num_letters: int    
         The number of UNIQUE letters in the word that have not been guessed yet
     num_lives: int
         The number of lives the player has
@@ -98,9 +98,8 @@ class Hangman:
 
         valid_letter = False
         while valid_letter == False:
-            guess = input('Input your guess letter: ')
+            letter = input('Input your guess letter: ').lower()
             print('\n')
-            letter = guess.lower()
             if len(letter) > 1:
                 print('Please, enter just one character\n')
             elif len(letter) == 0:
