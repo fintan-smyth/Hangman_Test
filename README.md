@@ -76,7 +76,7 @@ def __init__(self, word_list, num_lives=5):
 - I used the `random.choice` method from the `random` module to select a random word from `word_list` and assign it to the `word` attribute.
 - For the `word_guessed` attribute I created an empty list and assigned it to the attribute. Then, I used a `for` loop to iterate over the characters of the randomly chosen word, and for each character an underscore is appended to the list, resulting in a list containing an underscore for each letter of the word.
 - To determine the number of unique characters in the word, I first passed the the chosen word into the `set` function to construct a set consisting of the unique characters from the word. This set is then passed into the `len` function to find the number of unique characters in the word, and this is assigned to the `num_letters` attribute. 
-- The `num_lives` attribute is simply assigned the `num_lives` parameter.
+- The `num_lives` attribute is simply assigned to be equal to the `num_lives` parameter.
 - For the `list_letters` attribute an empty list is created, as initially no letters have been tried, to be populated later when attempts are made.
 - The two required statements are then printed, using f-strings to format them to contain the length of the `word` attribute, and the `word_guessed` list respectively.
 
