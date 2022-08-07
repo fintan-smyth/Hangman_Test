@@ -7,11 +7,11 @@ For this project we were tasked to program a simple hangman game using python. I
 # Milestone 1
 
 
-For milestone 1 we were required to program the first component of the `ask_letter` method, which prompts the user to input a letter and proceed if the input is determined to be valid. A valid input in this case is defined as one that constitutes a single character. If the input is not valid it will output an appropriate error message and continue to prompt the user until a valid input is given. Once a valid input is received the `ask_letter()` method will finish and the code will proceed.
+For milestone 1 we were required to program the first component of the `ask_letter` method, which prompts the user to input a letter and proceed if the input is determined to be valid. A valid input in this case is defined as one that constitutes a single character. If the input is not valid it will output an appropriate error message and continue to prompt the user until a valid input is given. Once a valid input is received the `ask_letter` method will finish and the code will proceed.
 
 To achieve this I used the following code:
 ``` python
-define ask_letter(self)
+def ask_letter(self)
     valid_letter = False    
     while valid_letter == False:
         letter = input('Input your guess letter: ').lower()
@@ -63,15 +63,15 @@ Upon initialisation the method should also print two messages: A statement infor
 Here is the code I used to achieve this:
 ``` python
 def __init__(self, word_list, num_lives=5):
-        self.word = random.choice(word_list)
-        self.word_guessed = []
-        for character in self.word:
-            self.word_guessed.append('_')
-        self.num_letters = len(set(self.word))
-        self.num_lives = num_lives
-        self.list_letters = []
-        print(f"The mystery word has {len(self.word)} characters.\n")
-        print(f'{self.word_guessed}, \n')
+    self.word = random.choice(word_list)
+    self.word_guessed = []
+    for character in self.word:
+        self.word_guessed.append('_')
+    self.num_letters = len(set(self.word))
+    self.num_lives = num_lives
+    self.list_letters = []
+    print(f"The mystery word has {len(self.word)} characters.\n")
+    print(f'{self.word_guessed}, \n')
 ```
 - I used the `random.choice` method from the `random` module to select a random word from `word_list` and assign it to the `word` attribute.
 - For the `word_guessed` attribute I created an empty list and assigned it to the attribute. Then, I used a `for` loop to iterate over the characters of the randomly chosen word, and for each character an underscore is appended to the list, thus resulting in a list containing an underscore for each letter of the word.
@@ -80,7 +80,7 @@ def __init__(self, word_list, num_lives=5):
 - For the `list_letters` attribute an empty list is created, as initially no letters have been tried, to be populated later when attempts are made.
 - The two required statements are then printed, using f-strings to format them to contain the length of the `word` attribute, and the `word_guessed` list respectively.
 
-Additionally, milestone 2 required us to add to the `ask_letter` method such that it would now also check if the input letter had already been tried, and only proceed if this was not the case. To do so I made the following addition to the contents of the loop contained in the `ask_letter` method:
+Additionally, milestone 2 required us to add to the `ask_letter` method such that it would now also check if the input letter had already been tried, and only proceed if this was not the case. To do so I made the following changes to the contents of the loop contained in the `ask_letter` method:
 ``` python
     elif letter in self.list_letters:
        print(f"{letter} was already tried\n")
@@ -92,4 +92,42 @@ Additionally, milestone 2 required us to add to the `ask_letter` method such tha
 - If not, the loop proceeds to the `else` statement, which now also appends the guessed letter to the `list_letters` list.
 ---
 # Milestone 3
+
+For the third milestone, we were required to complete the `check_letter` method, which is used to check if the letter is contained in the word. If it is a congratulations message is displayed, the `word_guessed` list is updated to include the new letter and displayed, and the `num_letters` attribute is reduced by one. If the letter is not included an error message is displayed and the `num_lives` attribute is reduced by one.
+
+To achieve this I used the following code:
+```python
+    def check_letter(self, letter):
+        if letter in self.word:
+            for i, character in enumerate(self.word):
+                if character == letter:
+                    self.word_guessed[i] = letter
+            self.num_letters = self.num_letters - 1
+            print(f'Nice! {letter} is in the word\n')
+            
+        else:
+            self.num_lives = self.num_lives - 1 
+            print(f'Sorry, {letter} is not in the word.\n')
+            print(f'You have {self.num_lives} lives left.\n')
+```
+- An `if` statement is used to check if the letter is contained in the word.
+- If it is: 
+    - The `enumerate` function is used to generate an enumerate object consisting of each letter in order and its index, which is then iterated over.
+    - If the character from the word is equal to the letter that was guessed, the item(s) in the `word_guessed` list with the index of the characters matching the letter guess are replaced with said letter.
+    - The `num_letters` attribute is then reduced by one.
+    - An f-string is used to print the output `Nice! {letter} is in the word`
+- If the letter is not in the word:
+    - The `num_lives` attribute is reduced by one.
+    - An f-string is used to print `Sorry, {letter} is not in the word.` followed by `You have {self.num_lives} lives left.`
+
+Finally, the `ask_letter` method must be updated to call the `check_letter` method once a valid input is received. To do this the final `else` clause is changed to include `self.check_letter(letter)`:
+``` python
+    else:
+        valid_letter = True
+        self.list_letters.append(letter)
+        self.check_letter(letter)
+```
+---
+
+# Milestone 4
 
