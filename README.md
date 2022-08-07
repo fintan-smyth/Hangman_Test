@@ -117,10 +117,10 @@ To achieve this I used the following code:
     - If the character from the word is equal to the letter that was guessed, the item(s) in the `word_guessed` list with the index of the characters matching the letter guess are replaced with said letter.
     - The `num_letters` attribute is then reduced by one.
     - An f-string is used to print the output `Nice! {letter} is in the word`
-    - The updated `word_guessed` list is then printed
+    - The updated `word_guessed` list is then printed.
 - If the letter is not in the word:
     - The `num_lives` attribute is reduced by one.
-    - An f-string is used to print `Sorry, {letter} is not in the word.` followed by `You have {self.num_lives} lives left.`
+    - An f-string is used to print `Sorry, {letter} is not in the word.` followed by `You have {self.num_lives} lives left.`.
 
 Finally, the `ask_letter` method must be updated to call the `check_letter` method once a valid input is received. To do this the final `else` clause is changed to include `self.check_letter(letter)`:
 ``` python
@@ -143,10 +143,30 @@ def play_game(word_list):
         if game.num_lives == 0:
             print(f"You ran out of lives. The word was {game.word}")
             finished = True
-        elif game.num_letters ==0:
-            print(game.word_guessed, '\n')
+        elif game.num_letters == 0:
             print('Congratulations, you won!')
             finished = True
 ```
 
-- Firstly an instance of the `Hangman` class is called with parameters `word_list` and `num_lives = 5`
+- Firstly an instance of the `Hangman` class is called with parameters `word_list` and `num_lives = 5`.
+- The variable `finished` corresponding to whether the game has finished yet is initialised as `False`.
+- A `while` loop is created to execute repeatedly as long as `finished` is equal to `False`.
+- Within the loop the `ask_letter` method is then called.
+- Once the `ask_letter` method has run an `if`/`elif` pair of statements is used to determine if the game is complete.
+    - If `num_lives` is equal to zero, the statement `You ran out of lives. The word was {game.word}` is displayed and the `finished` variable is set to `True` causing the loop to no longer repeat.
+    - Otherwise, if `num_letters` is equal to zero, the statement `Congratulations, you won!` is displayed and the `finished` variable is set to `True` causing the loop to no longer repeat.
+    - If neither are the case, the `finished` variable remains `False` and the loop continues.
+
+Finally, to play the game when the program is run the following code is included:
+```python
+if __name__ == '__main__':
+    word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
+    play_game(word_list)
+```
+- If the `__name__` variable is equal to `__main__`, meaning that the code is running as the main program and not being imported, then the contents of the if clause are run:
+    - A `word_list` variable is created containing a list of words to be selected from.
+    - The `play_game` method is then called on this list of words.
+---
+# Bonus Milestone
+
+
