@@ -79,6 +79,7 @@ class Hangman:
                     self.word_guessed[i] = letter
             self.num_letters = self.num_letters - 1
             print(f'Nice! {letter} is in the word\n')
+            print(self.word_guessed, '\n')
             
         else:
             self.num_lives = self.num_lives - 1 
@@ -119,17 +120,11 @@ def play_game(word_list):
         if game.num_lives == 0:
             print(f"You ran out of lives. The word was {game.word}")
             finished = True
-            break
-        
         elif game.num_letters ==0:
-            print(game.word_guessed, '\n')
             print('Congratulations, you won!')
             finished = True
-            break
-        print(game.word_guessed, '\n')
         
         
-
 
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']

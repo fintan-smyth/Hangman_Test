@@ -74,7 +74,7 @@ def __init__(self, word_list, num_lives=5):
     print(f'{self.word_guessed}, \n')
 ```
 - I used the `random.choice` method from the `random` module to select a random word from `word_list` and assign it to the `word` attribute.
-- For the `word_guessed` attribute I created an empty list and assigned it to the attribute. Then, I used a `for` loop to iterate over the characters of the randomly chosen word, and for each character an underscore is appended to the list, thus resulting in a list containing an underscore for each letter of the word.
+- For the `word_guessed` attribute I created an empty list and assigned it to the attribute. Then, I used a `for` loop to iterate over the characters of the randomly chosen word, and for each character an underscore is appended to the list, resulting in a list containing an underscore for each letter of the word.
 - To determine the number of unique characters in the word, I first passed the the chosen word into the `set` function to construct a set consisting of the unique characters from the word. This set is then passed into the `len` function to find the number of unique characters in the word, and this is assigned to the `num_letters` attribute. 
 - The `num_lives` attribute is simply assigned the `num_lives` parameter.
 - For the `list_letters` attribute an empty list is created, as initially no letters have been tried, to be populated later when attempts are made.
@@ -104,6 +104,7 @@ To achieve this I used the following code:
                     self.word_guessed[i] = letter
             self.num_letters = self.num_letters - 1
             print(f'Nice! {letter} is in the word\n')
+            print(game.word_guessed, '\n')
             
         else:
             self.num_lives = self.num_lives - 1 
@@ -116,6 +117,7 @@ To achieve this I used the following code:
     - If the character from the word is equal to the letter that was guessed, the item(s) in the `word_guessed` list with the index of the characters matching the letter guess are replaced with said letter.
     - The `num_letters` attribute is then reduced by one.
     - An f-string is used to print the output `Nice! {letter} is in the word`
+    - The updated `word_guessed` list is then printed
 - If the letter is not in the word:
     - The `num_lives` attribute is reduced by one.
     - An f-string is used to print `Sorry, {letter} is not in the word.` followed by `You have {self.num_lives} lives left.`
@@ -131,3 +133,20 @@ Finally, the `ask_letter` method must be updated to call the `check_letter` meth
 
 # Milestone 4
 
+For the final milestone, the logic of the game needs to be coded. The game must iteratively prompt the player for an input until either all the letters have been guessed or the player runs out of lives. In either case, an appropriate message should be dsiplayed before exiting the game completely. My code to achieve this is as follows:
+```python
+def play_game(word_list):
+    game = Hangman(word_list, num_lives=5)
+    finished = False
+    while finished == False:
+        game.ask_letter()
+        if game.num_lives == 0:
+            print(f"You ran out of lives. The word was {game.word}")
+            finished = True
+        elif game.num_letters ==0:
+            print(game.word_guessed, '\n')
+            print('Congratulations, you won!')
+            finished = True
+```
+
+- Firstly an instance of the `Hangman` class is called with parameters `word_list` and `num_lives = 5`
