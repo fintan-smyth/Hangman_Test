@@ -220,3 +220,6 @@ The game now shows progressively more of the hangman image as the player makes i
 
 # Conclusion
 
+In conclusion thsi project gave me good experience in bringing together the various python concepts I have learned. I had some experience with python prior to starting the AICore course, but largely with running select lines of code for example in jupyter notebook. This project helped me gain an understanding of how a python program in its entirety is created and provided good practice with using python to solve the various problems necessary to complete the project.
+
+To improve on the program I have created, I could find a way to automatically display a correct proportion of the hangman image should a different number of lives be selected as a game parameter. It would currently only work with the default selection of five lives, as there is a specific image corresponding to each of the remaining lives.
