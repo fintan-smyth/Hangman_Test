@@ -41,13 +41,37 @@ class Hangman:
         Asks the user for a letter.
     '''
     def __init__(self, word_list, num_lives=5):
+        self.word = random.choice(word_list)
+        self.word_guessed = []
+        for character in self.word:
+            self.word_guessed.append('_')
+        self.num_letters = len(set(self.word))
+        self.num_lives = num_lives
+        self.list_letters = []
+        print(f"The mystery word has {len(self.word)} characters.\n")
+        print(f'{self.word_guessed}, \n')
         # TODO 2: Initialize the attributes as indicated in the docstring
         # TODO 2: Print two message upon initialization:
         # 1. "The mystery word has {len(self.word)} characters" (The number of letters is NOT the UNIQUE number of letters)
         # 2. {word_guessed}
-        pass
+        
 
-    def check_letter(self, letter) -> None:
+    def check_letter(self, letter):
+        if letter in self.word:
+            for i, character in enumerate(self.word):
+                if character == letter:
+                    self.word_guessed[i] = letter
+            self.num_letters = self.num_letters - 1
+            print(f'Nice! {letter} is in the word\n')
+            print(self.word_guessed, '\n')
+            
+        else:
+            self.num_lives = self.num_lives - 1 
+            print(f'Sorry, {letter} is not in the word.\n')
+            if self.num_lives == 1:
+                print(f'You have {self.num_lives} life left.\n')
+            else:
+                print(f'You have {self.num_lives} lives left.\n')
         '''
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
@@ -64,7 +88,7 @@ class Hangman:
         # TODO 3: If the letter is in the word, the number of UNIQUE letters in the word that have not been guessed yet has to be reduced by 1
         # TODO 3: If the letter is not in the word, reduce the number of lives by 1
         # Be careful! A word can contain the same letter more than once. TIP: Take a look at the index() method in the string class
-        pass
+        
 
     def ask_letter(self):
         '''
@@ -86,12 +110,25 @@ class Hangman:
                 print('Please, enter just one character\n')
             elif len(letter) == 0:
                 print('Please, enter at least one character\n')
+            elif letter in self.list_letters:
+                print(f"{letter} was already tried\n")
             else:
                 valid_letter = True
+                self.list_letters.append(letter)
+                self.check_letter(letter)
 
 def play_game(word_list):
-    # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
+    finished = False
+    while finished == False:
+        game.ask_letter()
+        if game.num_lives == 0:
+            print(f"You ran out of lives. The word was {game.word}")
+            finished = True
+        elif game.num_letters == 0:
+            print('Congratulations, you won!')
+            finished = True
+    # As an aid, part of the code is already provided:
     # TODO 1: To test this task, you can call the ask_letter method
     # TODO 2: To test this task, upon initialization, two messages should be printed 
     # TODO 3: To test this task, you call the ask_letter method and check if the letter is in the word
@@ -100,7 +137,6 @@ def play_game(word_list):
     # If the user guesses the word, print "Congratulations, you won!"
     # If the user runs out of lives, print "You ran out of lives. The word was {word}"
 
-    game.ask_letter()
 
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']

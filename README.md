@@ -36,6 +36,10 @@ def ask_letter(self)
     - Finally, if the length of the input string is neither greater than one nor zero, therefore being equal to 1 as it is a positive integer, the `valid_letter` variable is changed to `True`, causing the loop to exit.
 - Additionally, newlines `\n` were added between ouptuts to aid in readability.
 
+When the `ask_letter` method is called the game will now prompt the user and display the correct message when inputs are given.
+
+![Milestone 1 output](images/Milestone%201%20ouptut.jpg)
+
 ---
 
 # Milestone 2
@@ -90,6 +94,11 @@ Additionally, milestone 2 required us to add to the `ask_letter` method such tha
 ```
 - An additional `elif` statement was added to the loop which checks if the letter is in the `list_letters` list. If so, the output `{letter} was already tried` is given and the loop restarts.
 - If not, the loop proceeds to the `else` statement, which now also appends the guessed letter to the `list_letters` list.
+
+Now when the game is initialised the two required messages are printed. The game will now also reject a letter that has already been tried and prompt for a different input.
+
+![Milestone 2](images/Milestone%202.jpg)
+
 ---
 # Milestone 3
 
@@ -104,12 +113,15 @@ To achieve this I used the following code:
                     self.word_guessed[i] = letter
             self.num_letters = self.num_letters - 1
             print(f'Nice! {letter} is in the word\n')
-            print(game.word_guessed, '\n')
+            print(self.word_guessed, '\n')
             
         else:
             self.num_lives = self.num_lives - 1 
             print(f'Sorry, {letter} is not in the word.\n')
-            print(f'You have {self.num_lives} lives left.\n')
+            if self.num_lives == 1:
+                print(f'You have {self.num_lives} life left.\n')
+            else:
+                print(f'You have {self.num_lives} lives left.\n')
 ```
 - An `if` statement is used to check if the letter is contained in the word.
 - If it is: 
@@ -129,6 +141,11 @@ Finally, the `ask_letter` method must be updated to call the `check_letter` meth
         self.list_letters.append(letter)
         self.check_letter(letter)
 ```
+
+Now, when an incorrect letter is guessed the game will inform the player and remove a life. When a correct letter is guessed, the player is informed and the `word_guessed` list is displayed, with every instance of the letter correctly replaced.
+
+![Milestone 3](images/Milestone%203.jpg)
+
 ---
 
 # Milestone 4
@@ -166,7 +183,13 @@ if __name__ == '__main__':
 - If the `__name__` variable is equal to `__main__`, meaning that the code is running as the main program and not being imported, then the contents of the if clause are run:
     - A `word_list` variable is created containing a list of words to be selected from.
     - The `play_game` method is then called on this list of words.
+
+
+
+![](images/Milestone%204%20a.jpg)![](images/Milestone%204%20b.jpg)
+
 ---
+
 # Bonus Milestone
 
 For the bonus milestone it was necessary to devise a method to display a visual representation of the player's remaining lives, progressively revealing more of the hangman image as lives are lost. To achieve this I did the following:
@@ -192,3 +215,8 @@ self.image_dic =   {0:" ____\n|   |\n|   Q\n|  /|\\\n|   | \n|  / \\\n|_____",
 The game now shows progressively more of the hangman image as the player makes incorrect guesses and loses lives.
 
 ![](images/bonus%20milestone%201.jpg) ![](images/bonus%20milestone%202.jpg)
+
+---
+
+# Conclusion
+
