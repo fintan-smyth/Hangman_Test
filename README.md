@@ -184,7 +184,7 @@ if __name__ == '__main__':
     - A `word_list` variable is created containing a list of words to be selected from.
     - The `play_game` method is then called on this list of words.
 
-
+The game will now continue to prompt for guesses until either of the game finishing conditions are met, upon which the appropriate closing message is displayed and the program finishes.
 
 ![](images/Milestone%204%20a.jpg)![](images/Milestone%204%20b.jpg)
 
