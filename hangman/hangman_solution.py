@@ -85,8 +85,10 @@ class Hangman:
             self.num_lives = self.num_lives - 1 
             print(f'Sorry, {letter} is not in the word.\n')
             print(self.image_dic[self.num_lives],'\n')
-            print(f'You have {self.num_lives} lives left.\n')
-            
+            if self.num_lives == 1:
+                print(f'You have {self.num_lives} life left.\n')
+            else:
+                print(f'You have {self.num_lives} lives left.\n')
 
     def ask_letter(self):
         

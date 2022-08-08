@@ -120,9 +120,9 @@ To achieve this I used the following code:
     - The updated `word_guessed` list is then printed.
 - If the letter is not in the word:
     - The `num_lives` attribute is reduced by one.
-    - An f-string is used to print `Sorry, {letter} is not in the word.` followed by `You have {self.num_lives} lives left.`.
+    - An f-string is used to print `Sorry, {letter} is not in the word.` followed by `You have {self.num_lives} life left.` if the number of remaining lives is equal to one. Otherwise, `You have {self.num_lives} lives left.` is displayed.
 
-Finally, the `ask_letter` method must be updated to call the `check_letter` method once a valid input is received. To do this the final `else` clause is changed to include `self.check_letter(letter)`:
+Finally, the `ask_letter` method must be updated to call the `check_letter` method on the letter once a valid input is received. To do this the final `else` clause is changed to include `self.check_letter(letter)`:
 ``` python
     else:
         valid_letter = True
@@ -133,7 +133,7 @@ Finally, the `ask_letter` method must be updated to call the `check_letter` meth
 
 # Milestone 4
 
-For the final milestone, the logic of the game needs to be coded. The game must iteratively prompt the player for an input until either all the letters have been guessed or the player runs out of lives. In either case, an appropriate message should be dsiplayed before exiting the game completely. My code to achieve this is as follows:
+For the final milestone, the logic of the game needs to be coded. The game must iteratively prompt the player for an input until either all the letters have been guessed or the player runs out of lives. In either case, an appropriate message should be displayed before exiting the game completely. My code to achieve this is as follows:
 ```python
 def play_game(word_list):
     game = Hangman(word_list, num_lives=5)
@@ -169,4 +169,26 @@ if __name__ == '__main__':
 ---
 # Bonus Milestone
 
+For the bonus milestone it was necessary to devise a method to display a visual representation of the player's remaining lives, progressively revealing more of the hangman image as lives are lost. To achieve this I did the following:
+```python
+self.image_dic =   {0:" ____\n|   |\n|   Q\n|  /|\\\n|   | \n|  / \\\n|_____",
+                    1:" ____\n|   |\n|   0\n|\n|\n|  \n|_____",
+                    2:" ____\n|\n|\n|\n|\n|  \n|_____",
+                    3:"\n|\n|\n|\n|\n|  \n|_____",
+                    4:"\n_____"}
+```
+- I first added the attribute `image_dic` to the `__init__` method and assigned to it a dictionary containing:
+    - __Keys__ corresponding to the number of possible lives remaining once at least one incorrect guess has been made (4 - 0) 
+    - __Values__ consisting of the ASCII image to be displayed at the appropriate number of lives remaining  
+```python
+        else:
+            self.num_lives = self.num_lives - 1 
+            print(f'Sorry, {letter} is not in the word.\n')
+            print(self.image_dic[self.num_lives],'\n')
+            print(f'You have {self.num_lives} lives left.\n')
+```
+- The final `else` clause of the `check_letter` method, executed when an incorrect letter is input, is then updated to print the value from `image_dic` with a key equal to the number of lives remaining `num_lives`.
 
+The game now shows progressively more of the hangman image as the player makes incorrect guesses and loses lives.
+
+![](images/bonus%20milestone%201.jpg) ![](images/bonus%20milestone%202.jpg)
